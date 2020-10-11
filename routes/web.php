@@ -23,6 +23,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/phonenumbers', 'PhonenumbersController@index')->name('phonenumbers');
-Auth::routes();
+Route::post('/phonenumbers/delete', 'PhonenumbersController@deletePhonenumber');
 
 // Route::get('/phonenumbers', 'PhonenumbersController@phonenumbers');
