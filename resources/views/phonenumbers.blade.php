@@ -108,11 +108,6 @@ h2 {
                     </form>
                 </div>
                 @endforeach
-                <!-- <form class="edit-form">
-                    <input type="number" name="changed_number" required>
-                    <button type="submit" name="change">Change</button>
-                    @csrf
-                </form> -->
             </div>
         </div>
         <div class="phonenumbers-section__content__users">

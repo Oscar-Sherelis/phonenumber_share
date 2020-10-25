@@ -50,7 +50,8 @@ class PhonenumbersController extends Controller
     }
     public function editPhonenumber (Request $req) {
         $req->validate([
-            'change' => 'required | regex:/^([0-9\s\-\+\(\)]*)$/'
+            'change' => 'required | regex:/^([0-9\s\-\+\(\)]*)$/',
+            'new_number' => 'required | regex:/^([0-9\s\-\+\(\)]*)$/ | min:9'
         ]);
         phonenumbers::where('id', $req->input('change'))
             ->update(array('phonenumber' => $req->input('new_number')));
