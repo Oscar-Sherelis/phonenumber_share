@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     width: 450px;
-    overflow: auto;
+    max-width: 450px;
 }
 input[type="number"] {
     padding: 10px;
@@ -31,6 +31,8 @@ button[type="submit"] {
     background-color: #fff;
     padding: 10px;
     border-radius: 14px;
+    overflow-y: scroll;
+    max-height: 89.9vh;
 }
 .phones-from-db,
 .user {
@@ -54,9 +56,17 @@ button img {
     display: flex;
     justify-content: space-between;
 }
-/* .edit-form {
-    display: none;
-} */
+.success-message {
+    background-color: rgb(13, 191, 61);
+    border-radius: 14px;
+    padding: 10px;
+    display: block;
+}
+h2 {
+    text-shadow: -1px -1px 0 rgb(255, 255, 255),
+             -2px -2px 1px rgb(255, 255, 255);
+  }
+
 </style>
 @extends('layouts.welcome')
 @section('phonenumbers')
@@ -64,20 +74,32 @@ button img {
     <div class="phonenumbers-section__content">
         <div class="phonenumbers-section__content__phones">
             <h2>Phonenumbers</h2>
-            <form class="add-phone-form" action="" method="POST">
-                <input type="number" placeholder="Add phonenumber" required>
-                <button class="add" name="add" type="submit">Add new</button>
+            <form class="add-phone-form" action="/phonenumbers/add" method="POST">
+                @error('add')
+                    <span class="error">{{$message}}</span>
+                @enderror
+                <input type="number" name="add" placeholder="Add phonenumber" required>
+                <button class="add" type="submit">Add new</button>
                 @csrf
             </form>
             <div class="phones">
+                @if (\Session::has('success'))
+                    <span class="success-message">{!! \Session::get('success') !!}</span>
+                @endif
+                @error('delete')
+                    <span class="error">{{$message}}</span>
+                @enderror
                 @foreach ($phonenumbers as $phonenumber)
                 <div class="phones-from-db">
                     <span>
                         {{ $phonenumber->phonenumber }}
                     </span> 
-                    <button class="edit" name="edit" value="{{ $phonenumber->id }}">
-                        <img src="{{ asset('/images/edit.svg') }}" title="Edit" alt="Edit">
-                    </button>
+                    <form action="/phonenumbers/edit" method="GET">
+                        <button class="edit" name="edit" value="{{ $phonenumber->id }}">
+                            <img src="{{ asset('/images/edit.svg') }}" title="Edit" alt="Edit">
+                        </button>
+                        @csrf
+                    </form>
                     <form action="phonenumbers/delete" method="POST">
                         <button name="delete" value="{{ $phonenumber->id }}" type="submit">
                             <img src="{{ asset('/images/del.svg') }}" title="Delete" alt="Delete">
@@ -86,11 +108,11 @@ button img {
                     </form>
                 </div>
                 @endforeach
-                <form class="edit-form">
+                <!-- <form class="edit-form">
                     <input type="number" name="changed_number" required>
                     <button type="submit" name="change">Change</button>
                     @csrf
-                </form>
+                </form> -->
             </div>
         </div>
         <div class="phonenumbers-section__content__users">
@@ -106,6 +128,9 @@ button img {
                 @endforeach
             </div>
         </div>
+    </div>
+    <!-- if user shared phone can accept or reject -->
+    <div class="phonenumbers-section__content__shared">
     </div>
 </div>
 @endsection

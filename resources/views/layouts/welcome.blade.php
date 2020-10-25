@@ -94,6 +94,9 @@
 
         @section('phonenumbers')
         @show
+
+        @section('edit_phone')
+        @show
     </main>
     <script src="{{asset('js/app.js')}}"></script>
         <!-- https://stackoverflow.com/questions/43090063/how-to-get-data-from-database-to-view-page-in-laravel -->
