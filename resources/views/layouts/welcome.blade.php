@@ -9,33 +9,6 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
             <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <style>
-        * {
-            box-sizing: border-box;
-        }
-        nav {
-            min-height: 10vh;
-            max-height: 10vh;
-            text-transform: uppercase;
-        }
-        main {
-            min-height: 89.9vh;
-            max-height: 89.9vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-image: url("{{ asset('/images/bg.png') }}");
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-        .nav-item {
-            display: flex;
-            align-items: center;
-        }
-        .loged-in-nav a{
-            margin-right: 15px;
-        }
-        </style>
     </head>
     <body>
     <header>
