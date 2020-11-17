@@ -1,7 +1,8 @@
-## About project
-
+About project
 Started learning laravel and decided to make phonenumber share
 
-## License
+Functions
+Add new phonenumber delete phonenumber edit phonenumber share phonenumber
 
-Open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+License
+Open-sourced software licensed under the GNU GPL license
