@@ -31,9 +31,9 @@ class PhonenumbersController extends Controller
         $req->validate([
             'add' => 'required | regex:/^([0-9\s\-\+\(\)]*)$/|min:9'
         ]);
-        $phonenumbers = new phonenumbers();
-        $checkNumberExists = phonenumbers::select('id')->where('phonenumber', $req->input('add'))->exists();
+        // $checkNumberExists = phonenumbers::select('id')->where('phonenumber', $req->input('add'))->exists();
         if (!phonenumbers::where('phonenumber', $req->input('add'))->exists()) {
+            $phonenumbers = new phonenumbers();
             $phonenumbers->phonenumber = $req->input('add');
             $phonenumbers->user_id = Auth::user()->id;
             $phonenumbers->save();
