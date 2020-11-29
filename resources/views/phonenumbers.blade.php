@@ -12,6 +12,7 @@
                 <button class="add" type="submit">Add new</button>
                 @csrf
             </form>
+            @if(count($phonenumbers) !== 0)
             <div class="phones">
                 @if (\Session::has('success'))
                 <span class="success-message">{!! \Session::get('success') !!}</span>
@@ -50,22 +51,18 @@
                                     @csrf
                                 </form>
                             </td>
-                            <!-- <td>
-                                <form action="phonenumbers/share" method="POST">
-                                    <input type="checkbox" name="checked_to_share[]" value="{{ $phonenumber->id }}">
-                                    @csrf
-                                </form>
-                            </td> -->
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
+            @endif
         </div>
         <div class="phonenumbers-section__content__users">
             <h2>Share</h2>
             <div class="users">
                 <form action="phonenumbers/share" method="POST">
+                    @if (count($phonenumbers) !== 0)
                     <select name="phonenumber_list" class="phonenumber_list">
                         @foreach($phonenumbers as $phonenumber)
                         <option value="{{$phonenumber->id}}">
@@ -73,6 +70,35 @@
                         </option>
                         @endforeach
                     </select>
+                    @else
+                    <span class="zero-item-found">*Cannot share, because no phonenumbers found</span>
+                    @endif
+                    @foreach ($users as $user)
+                    <label class="user">{{ $user->name }}
+                        <button class="share" name="shared_user" value="{{ $user->id }}" type="submit">
+                            <img src="{{ asset('/images/share.svg') }}" title="Share" alt="Share">
+                        </button>
+                    </label>
+                    @endforeach
+                    @csrf
+                </form>
+            </div>
+        </div>
+        <div class="phonenumbers-section__content__shares">
+            <h2>Shared from Users</h2>
+            <div class="sent-to-me-numbers">
+                <form action="phonenumbers/share" method="POST">
+                    @if (count($phonenumbers) !== 0)
+                    <select name="phonenumber_list" class="phonenumber_list">
+                        @foreach($phonenumbers as $phonenumber)
+                        <option value="{{$phonenumber->id}}">
+                            {{$phonenumber->phonenumber}}
+                        </option>
+                        @endforeach
+                    </select>
+                    @else
+                    <span class="zero-item-found">*Cannot share, because no phonenumbers found</span>
+                    @endif
                     @foreach ($users as $user)
                     <label class="user">{{ $user->name }}
                         <button class="share" name="shared_user" value="{{ $user->id }}" type="submit">

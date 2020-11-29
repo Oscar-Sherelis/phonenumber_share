@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\phonenumbers;
+use App\phonenumber_share;
 use App\Users;
 use Auth;
 
@@ -17,6 +18,8 @@ class PhonenumbersController extends Controller
         $users = Users::all()->where('id', '!=', Auth::user()->id);
         
         $phonenumbers = phonenumbers::all()->where('user_id', Auth::user()->id);
+        // $sharedPhonenumbers = phonenumber_share::all()->where('user_id', Auth::user()->id);
+        // think how to make multiple relations
         return view('phonenumbers', ['phonenumbers' => $phonenumbers], ['users' => $users]);
     }
 
