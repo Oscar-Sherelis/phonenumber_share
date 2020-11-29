@@ -1766,7 +1766,10 @@ pre code {
     margin-left: 91.6666666667%;
   }
 }
-
+table {
+  text-align: center;
+  width: 100%;
+}
 .table {
   width: 100%;
   margin-bottom: 1rem;
@@ -1778,6 +1781,7 @@ pre code {
   padding: 0.75rem;
   vertical-align: top;
   border-top: 1px solid #dee2e6;
+  text-align: center;
 }
 
 .table thead th {
@@ -10978,7 +10982,6 @@ button[type="submit"] {
     max-height: 89.9vh;
 }
 
-.phones-from-db,
 .user {
     display: flex;
     align-items: center;
@@ -11024,4 +11027,17 @@ h1 {
     text-align: center;
     color: #fff;
     text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
+}
+
+.phonenumber_list {
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 5px;
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  width: 120px;
 }
