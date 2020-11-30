@@ -79,36 +79,53 @@
                             <img src="{{ asset('/images/share.svg') }}" title="Share" alt="Share">
                         </button>
                     </label>
-                    @endforeach
                     @csrf
+                    @endforeach
                 </form>
             </div>
         </div>
         <div class="phonenumbers-section__content__shares">
+            @if (count($shared) !== 0)
             <h2>Shared from Users</h2>
-            <div class="sent-to-me-numbers">
-                <form action="phonenumbers/share" method="POST">
-                    @if (count($phonenumbers) !== 0)
-                    <select name="phonenumber_list" class="phonenumber_list">
-                        @foreach($phonenumbers as $phonenumber)
-                        <option value="{{$phonenumber->id}}">
-                            {{$phonenumber->phonenumber}}
-                        </option>
+            <div class="phones">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sender</th>
+                            <th>Phonenumber</th>
+                            <th>Add</th>
+                            <th>Reject</th>
+                        <tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($shared as $sharedPhonenumber)
+                        <tr>
+                            <td>{{$sharedPhonenumber->name}}</td>
+                            <td>{{$sharedPhonenumber->phonenumber}}</td>
+                            <td>
+                                <form action="phonenumbers/share_add" method="POST">
+                                    <button class="share" name="shared_number_id" value="{{ $sharedPhonenumber->id }}"
+                                        type="submit">
+                                        <img src="{{ asset('/images/share.svg') }}" title="Share" alt="Share">
+                                    </button>
+                                    @csrf
+                                </form>
+                            </td>
+                            <td>
+                                <form action="phonenumbers/share_reject" method="POST">
+                                    <button class="share" name="shared_number_id" value="{{ $sharedPhonenumber->id }}"
+                                        type="submit">
+                                        <img src="{{ asset('/images/share.svg') }}" title="Share" alt="Share">
+                                    </button>
+                                    @csrf
+                                </form>
+                            </td>
+                        </tr>
                         @endforeach
-                    </select>
-                    @else
-                    <span class="zero-item-found">*Cannot share, because no phonenumbers found</span>
-                    @endif
-                    @foreach ($users as $user)
-                    <label class="user">{{ $user->name }}
-                        <button class="share" name="shared_user" value="{{ $user->id }}" type="submit">
-                            <img src="{{ asset('/images/share.svg') }}" title="Share" alt="Share">
-                        </button>
-                    </label>
-                    @endforeach
-                    @csrf
-                </form>
             </div>
+            @else
+            <span class="zero-item-found">*No one currently shared phonenumber</span>
+            @endif
         </div>
     </div>
 </div>

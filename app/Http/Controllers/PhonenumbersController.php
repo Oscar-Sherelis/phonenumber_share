@@ -7,6 +7,7 @@ use App\phonenumbers;
 use App\phonenumber_share;
 use App\Users;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class PhonenumbersController extends Controller
 {
@@ -18,9 +19,13 @@ class PhonenumbersController extends Controller
         $users = Users::all()->where('id', '!=', Auth::user()->id);
         
         $phonenumbers = phonenumbers::all()->where('user_id', Auth::user()->id);
-        // $sharedPhonenumbers = phonenumber_share::all()->where('user_id', Auth::user()->id);
-        // think how to make multiple relations
-        return view('phonenumbers', ['phonenumbers' => $phonenumbers], ['users' => $users]);
+        $shared = DB::table('phonenumber_shares')
+        ->join('phonenumbers', 'phonenumber_shares.number_id', '=', 'phonenumbers.id')
+        ->join('users', 'phonenumber_shares.user_from_id', '=', 'users.id')
+        ->select('users.name', 'phonenumbers.phonenumber', 'phonenumbers.id')
+        ->get();
+
+        return view('phonenumbers', compact('phonenumbers', 'users', 'shared'));
     }
 
     public function deletePhonenumber (Request $req) {

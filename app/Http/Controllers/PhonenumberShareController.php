@@ -38,10 +38,12 @@ class PhonenumberShareController extends Controller
             ['user_id', '=', $userId]
         ])->count();
 
+        // if no user has already shared same number and user not has already this phone then ok
         if ($checkInShare == 0 && $checkInPhonenumbers == 0) {
             $sharedPhonenumbers = new phonenumber_share();
             $sharedPhonenumbers->user_id = $userId;
             $sharedPhonenumbers->number_id = $phoneId;
+            $sharedPhonenumbers->user_from_id = Auth::user()->id;
             $sharedPhonenumbers->save();
             return redirect()->back()->with('success', 'Number shared successfully');
         }

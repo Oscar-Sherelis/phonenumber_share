@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Phonenumbers extends Migration
+class AddUserFromId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class Phonenumbers extends Migration
      */
     public function up()
     {
-        Schema::table('phonenumbers', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id');
-            $table->integer('number_id');
+        Schema::table('phonenumber_shares', function (Blueprint $table) {
+             $table->integer('user_from_id')->after('user_id');
             //
         });
     }
@@ -28,7 +26,8 @@ class Phonenumbers extends Migration
      */
     public function down()
     {
-        Schema::table('phonenumbers', function (Blueprint $table) {
+        Schema::table('phonenumber_shares', function (Blueprint $table) {
+            $table->dropColumn('user_from_id');
             //
         });
     }
