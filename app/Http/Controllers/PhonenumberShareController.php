@@ -47,7 +47,8 @@ class PhonenumberShareController extends Controller
             $sharedPhonenumbers->save();
             return redirect()->back()->with('success', 'Number shared successfully');
         }
-        print 'User already have this phone number';
+        print'<h2>User already have this phone number</h2>
+            <a href=\'/phonenumbers\'>Back to home page</a>';
     }
     public function addShared (Request $req) {
         $req->validate([
@@ -69,7 +70,9 @@ class PhonenumberShareController extends Controller
 
         return redirect()->back()->with('success', 'new number added successfully');
         } else {
-            print 'User already has this phonenumber';
+            print'<h2>User already has this phonenumber</h2>
+            <a href=\'/phonenumbers\'>Back to home page</a>';
+            
         }
     }
 

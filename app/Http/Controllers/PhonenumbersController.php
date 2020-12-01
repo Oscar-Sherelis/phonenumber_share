@@ -47,7 +47,8 @@ class PhonenumbersController extends Controller
             $phonenumbers->save();
             return redirect()->back()->with('success', 'new number added successfully');  
         } else {
-            echo 'Phonenumber already exists';
+            print '<h2>Phonenumber already exists</h2>
+            <a href=\'/phonenumbers\'>Back to home page</a>';
         } 
     }
 
