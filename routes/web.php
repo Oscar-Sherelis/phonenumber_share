@@ -14,10 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    // return view('layouts/welcome');
-    return view('main');
-});
+Route::view('/', 'main');
 // 
 Auth::routes();
 
