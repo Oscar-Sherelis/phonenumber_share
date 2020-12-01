@@ -4,7 +4,7 @@ RewriteBase public/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
+RewriteRule ^$ /public [L] DirectoryIndex index.html index.php
 </IfModule>
 <IfModule mod_negotiation.c>
     Options -MultiViews
