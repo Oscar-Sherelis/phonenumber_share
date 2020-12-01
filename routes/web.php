@@ -32,3 +32,6 @@ Route::post('/phonenumbers/share_add', 'PhonenumberShareController@addShared');
 Route::post('/phonenumbers/share_reject', 'PhonenumberShareController@rejectShared');
 
 // Route::get('/phonenumbers', 'PhonenumbersController@phonenumbers');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
