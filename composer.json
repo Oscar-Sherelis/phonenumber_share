@@ -54,7 +54,6 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "web": "$(composer config bin-dir)/heroku-php-apache2 public/",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
