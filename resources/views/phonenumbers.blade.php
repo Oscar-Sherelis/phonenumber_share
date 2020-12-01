@@ -104,7 +104,7 @@
                             <td>{{$sharedPhonenumber->phonenumber}}</td>
                             <td>
                                 <form action="phonenumbers/share_add" method="POST">
-                                    <button class="sharing-button" name=" shared_number_id"
+                                    <button class="sharing-button" name="shared_number_id"
                                         value="{{ $sharedPhonenumber->id }}" type="submit">
                                         <img src="{{ asset('/images/add_shared.svg') }}" title="Share" alt="Share">
                                     </button>

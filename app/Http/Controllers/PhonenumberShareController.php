@@ -49,4 +49,36 @@ class PhonenumberShareController extends Controller
         }
         print 'User already have this phone number';
     }
+    public function addShared (Request $req) {
+        $req->validate([
+            'shared_number_id' => 'required | regex:/^([0-9\s\-\+\(\)]*)$/',
+        ]);
+    
+        // check if user already has phone
+        if (phonenumbers::where([
+            ['id', '=', $req->input('shared_number_id')],
+            ['user_id', '=', Auth::user()->id]
+        ])->count() == 0) {
+            
+            $phone = phonenumbers::where('id', '=', $req->input('shared_number_id'))->first();
+            $phonenumbers = new phonenumbers();
+            $phonenumbers->phonenumber =  $phone->phonenumber;
+            $phonenumbers->user_id = Auth::user()->id;
+            $phonenumbers->save();
+            phonenumber_share::where('number_id', $req->input('shared_number_id'))->delete();
+
+        return redirect()->back()->with('success', 'new number added successfully');
+        } else {
+            print 'User already has this phonenumber';
+        }
+    }
+
+    public function rejectShared (Request $req) {
+        $req->validate([
+            'shared_number_id' => 'required | regex:/^([0-9\s\-\+\(\)]*)$/',
+        ]);
+
+        phonenumber_share::where('number_id', $req->input('shared_number_id'))->delete();
+        return redirect()->back()->with('success', 'Shared number was rejected successfully');
+    }
 }

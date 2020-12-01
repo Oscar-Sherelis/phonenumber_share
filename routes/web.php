@@ -28,5 +28,7 @@ Route::post('/phonenumbers/delete', 'PhonenumbersController@deletePhonenumber');
 Route::post('/phonenumbers/add', 'PhonenumbersController@addPhonenumber');
 Route::post('/phonenumbers/edited', 'PhonenumbersController@editPhonenumber');
 Route::post('/phonenumbers/share', 'PhonenumberShareController@shareNumber');
+Route::post('/phonenumbers/share_add', 'PhonenumberShareController@addShared');
+Route::post('/phonenumbers/share_reject', 'PhonenumberShareController@rejectShared');
 
 // Route::get('/phonenumbers', 'PhonenumbersController@phonenumbers');

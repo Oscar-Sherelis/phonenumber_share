@@ -17,8 +17,8 @@ class PhonenumbersController extends Controller
     //
     public function index () {
         $users = Users::all()->where('id', '!=', Auth::user()->id);
-        
         $phonenumbers = phonenumbers::all()->where('user_id', Auth::user()->id);
+        
         $shared = DB::table('phonenumber_shares')
         ->join('phonenumbers', 'phonenumber_shares.number_id', '=', 'phonenumbers.id')
         ->join('users', 'phonenumber_shares.user_from_id', '=', 'users.id')
