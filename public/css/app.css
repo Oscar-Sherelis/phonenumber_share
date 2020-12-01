@@ -11051,3 +11051,33 @@ h1 {
   font-weight: bold;
   color: rgb(194, 19, 19);
 }
+.sharing-button {
+  background-color: #fff;
+}
+
+/* Media queries */
+
+@media only screen and (max-width: 1100px) {
+  .phonenumbers-section__content {
+    width: 97vw;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .phonenumbers-section__content {
+    width: 53vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  main {
+    box-sizing: border-box;
+    min-height: 100vh;
+    max-height: none;
+  }
+  .phonenumbers-section__content__phones,
+  .phonenumbers-section__content__users {
+    margin-bottom: 25px;
+  }
+
+}

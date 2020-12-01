@@ -4,10 +4,10 @@
     <div class="phonenumbers-section__content">
         <div class="phonenumbers-section__content__phones">
             <h2>Phonenumbers</h2>
+            @error('add')
+            <p class="error">{{$message}}</p>
+            @enderror
             <form class="add-phone-form" action="/phonenumbers/add" method="POST">
-                @error('add')
-                <span class="error">{{$message}}</span>
-                @enderror
                 <input type="number" name="add" placeholder="Add phonenumber" required>
                 <button class="add" type="submit">Add new</button>
                 @csrf
@@ -87,7 +87,7 @@
         <div class="phonenumbers-section__content__shares">
             @if (count($shared) !== 0)
             <h2>Shared from Users</h2>
-            <div class="phones">
+            <div class="phones shared-phones">
                 <table>
                     <thead>
                         <tr>
@@ -104,18 +104,18 @@
                             <td>{{$sharedPhonenumber->phonenumber}}</td>
                             <td>
                                 <form action="phonenumbers/share_add" method="POST">
-                                    <button class="share" name="shared_number_id" value="{{ $sharedPhonenumber->id }}"
-                                        type="submit">
-                                        <img src="{{ asset('/images/share.svg') }}" title="Share" alt="Share">
+                                    <button class="sharing-button" name=" shared_number_id"
+                                        value="{{ $sharedPhonenumber->id }}" type="submit">
+                                        <img src="{{ asset('/images/add_shared.svg') }}" title="Share" alt="Share">
                                     </button>
                                     @csrf
                                 </form>
                             </td>
                             <td>
                                 <form action="phonenumbers/share_reject" method="POST">
-                                    <button class="share" name="shared_number_id" value="{{ $sharedPhonenumber->id }}"
-                                        type="submit">
-                                        <img src="{{ asset('/images/share.svg') }}" title="Share" alt="Share">
+                                    <button class="sharing-button" name="shared_number_id"
+                                        value="{{ $sharedPhonenumber->id }}" type="submit">
+                                        <img src="{{ asset('/images/del.svg') }}" title="Share" alt="Share">
                                     </button>
                                     @csrf
                                 </form>
