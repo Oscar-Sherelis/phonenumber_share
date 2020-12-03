@@ -16,7 +16,7 @@ class CreatePhonenumbersTable extends Migration
         Schema::create('phonenumbers', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('phonenumber'); 
+            $table->bigInteger('phonenumber'); 
         });
     }
 

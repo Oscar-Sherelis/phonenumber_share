@@ -50,6 +50,7 @@ class PhonenumberShareController extends Controller
         print'<h2>User already have this phone number</h2>
             <a href=\'/phonenumbers\'>Back to home page</a>';
     }
+    
     public function addShared (Request $req) {
         $req->validate([
             'shared_number_id' => 'required | regex:/^([0-9\s\-\+\(\)]*)$/',

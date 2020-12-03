@@ -23,6 +23,7 @@ class PhonenumbersController extends Controller
         ->join('phonenumbers', 'phonenumber_shares.number_id', '=', 'phonenumbers.id')
         ->join('users', 'phonenumber_shares.user_from_id', '=', 'users.id')
         ->select('users.name', 'phonenumbers.phonenumber', 'phonenumbers.id')
+        ->where('phonenumber_shares.user_id', '=', Auth::user()->id)
         ->get();
 
         return view('phonenumbers', compact('phonenumbers', 'users', 'shared'));
@@ -32,12 +33,13 @@ class PhonenumbersController extends Controller
         $req->validate([
             'delete' => 'required | regex:/^([0-9\s\-\+\(\)]*)$/'
         ]);
-        phonenumbers::where('id', $req->input('delete'))->delete(); 
+        phonenumbers::where('id', $req->input('delete'))->delete();
+        return redirect('/phonenumbers')->with('success', 'Number deleted successfully');
     }
 
     public function addPhonenumber (Request $req) {
         $req->validate([
-            'add' => 'required | regex:/^([0-9\s\-\+\(\)]*)$/|min:9'
+            'add' => 'required | regex:/^([0-9\s\-\+\(\)]*)$/| min:9 | max:12'
         ]);
         // $checkNumberExists = phonenumbers::select('id')->where('phonenumber', $req->input('add'))->exists();
         if (!phonenumbers::where('phonenumber', $req->input('add'))->exists()) {
@@ -60,7 +62,7 @@ class PhonenumbersController extends Controller
     public function editPhonenumber (Request $req) {
         $req->validate([
             'change' => 'required | regex:/^([0-9\s\-\+\(\)]*)$/',
-            'new_number' => 'required | regex:/^([0-9\s\-\+\(\)]*)$/ | min:9'
+            'new_number' => 'required | regex:/^([0-9\s\-\+\(\)]*)$/ | min:9 | max:12'
         ]);
         phonenumbers::where('id', $req->input('change'))
             ->update(array('phonenumber' => $req->input('new_number')));
