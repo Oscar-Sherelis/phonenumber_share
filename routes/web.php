@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+if (App::environment('production')) {
+    URL::forceScheme('https');
+}
 Route::view('/', 'main');
 // 
 Auth::routes();
