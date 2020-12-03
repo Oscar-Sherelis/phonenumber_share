@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
-URL::forceScheme('https');
+// URL::forceScheme('https');
 class RouteServiceProvider extends ServiceProvider
 {
     /**
