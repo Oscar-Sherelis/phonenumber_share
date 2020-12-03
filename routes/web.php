@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
+
+URL::forceScheme('https');
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +15,6 @@ use Illuminate\Support\Facades\URL;
 |
 */
 
-if (App::environment('production')) {
-    URL::forceScheme('https');
-}
 Route::view('/', 'main');
 // 
 Auth::routes();
