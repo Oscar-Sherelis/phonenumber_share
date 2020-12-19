@@ -65791,9 +65791,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-
-__webpack_require__(/*! ./components/Events */ "./resources/js/components/Events.js");
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
